@@ -1,0 +1,170 @@
+/* General reset for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for the body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #6e7bff, #87d3f9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    padding: 0 20px;
+}
+
+/* Main container styling */
+.container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    max-width: 90%;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Timer display styling */
+#timer-display {
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Session type (Work/Break) styling */
+#session-type {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #f5a623;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Styling for the slider and its label */
+input[type="range"] {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    background: #f5a623;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #ff8f00;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+#slider-value {
+    font-size: 1.2em;
+    color: white;
+}
+
+/* Button styling */
+button {
+    font-size: 1.2em;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    background-color: #f5a623;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #ff8f00;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 400px) {
+    #timer-display {
+        font-size: 3em;
+    }
+    .container {
+        width: 270px;
+        padding: 30px;
+    }
+}
+
+/* Add to your existing CSS */
+
+.timer-running {
+    background-color: #ff8f00; /* A bold color indicating the timer is running */
+    box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.5); /* Glow effect */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.timer-paused {
+    background-color: rgba(0, 0, 0, 0.5); /* Original color when paused */
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3); /* Original shadow */
+}
+
+/* Add a subtle pulsing effect when the timer is running */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 15px rgba(255, 143, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.3);
+    }
+}
+
+/* Apply the pulse effect when the timer is running */
+.timer-running .pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
