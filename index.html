@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="yrYYGbRTKzsBs7VbgkLMB4i04XT4rQqmBp3JD5jMzbw" />
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div id="timer-display">25:00</div>
-        <div id="session-type">Work Time</div>
-
-        <!-- Stylish slider for work time -->
-        <div>
-            <label for="work-time-slider">Set Work Time (Minutes): </label>
-            <input type="range" id="work-time-slider" min="1" max="45" value="25">
-            <span id="slider-value">25</span> minutes
+    <div id="timer-container">
+        <!-- Work / Break Toggle Switch -->
+        <div class="mode-toggle">
+            <button id="work-button" class="active">Work</button>
+            <button id="break-button">Break</button>
         </div>
 
+        <div class="timer-display" id="timer-display">25:00</div>
+        <div class="timer-status" id="timer-status">Work</div>
+
         <div class="controls">
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="reset">Reset</button>
+            <button id="start-button">Start</button>
+            <button id="pause-button" disabled>Pause</button>
+            <button id="reset-button" disabled>Reset</button>
         </div>
     </div>
 

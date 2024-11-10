@@ -1,170 +1,115 @@
-/* General reset for consistency */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Styling for the body */
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #6e7bff, #87d3f9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
-    padding: 0 20px;
+  background-color: #f7f7f7;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
 }
 
-/* Main container styling */
-.container {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
-    width: 320px;
-    max-width: 90%;
-    animation: fadeIn 0.5s ease-in-out;
+#timer-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 320px;
+  display: flex;
+  flex-direction: column;  /* Stack the items vertically */
+  align-items: center;    /* Center the items horizontally */
+  justify-content: space-between; /* Ensure proper spacing between items */
 }
 
-/* Timer display styling */
-#timer-display {
-    font-size: 4em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+.mode-toggle {
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 100%;
+  background-color: #f0f0f0;
 }
 
-/* Session type (Work/Break) styling */
-#session-type {
-    font-size: 1.2em;
-    margin-bottom: 25px;
-    color: #f5a623;
-    font-weight: 500;
-    text-transform: uppercase;
+.mode-toggle button {
+  flex: 1;  /* Each button takes up half the space */
+  padding: 12px;
+  font-size: 1.2rem;
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  outline: none;
 }
 
-/* Styling for the slider and its label */
-input[type="range"] {
-    width: 100%;
-    height: 10px;
-    -webkit-appearance: none;
-    background: #f5a623;
-    border-radius: 5px;
-    margin: 15px 0;
+.mode-toggle button.active {
+  background-color: #4caf50;
+  color: white;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+.mode-toggle button:hover {
+  background-color: #dcdcdc;
 }
 
-input[type="range"]::-webkit-slider-thumb:hover {
-    background: #ff8f00;
+.mode-toggle button.active:hover {
+  background-color: #45a049;
 }
 
-input[type="range"]:focus {
-    outline: none;
+.timer-display {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: background-color 0.5s ease-in-out;
 }
 
-#slider-value {
-    font-size: 1.2em;
-    color: white;
+.timer-status {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 20px;
+  transition: color 0.5s ease-in-out;
 }
 
-/* Button styling */
-button {
-    font-size: 1.2em;
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    background-color: #f5a623;
-    color: white;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+.controls {
+  display: flex;
+  justify-content: center;  /* Center all the buttons */
+  gap: 15px;  /* Space between buttons */
+  width: 100%;  /* Full width of the container */
+  margin-top: 20px;  /* Add space between timer display and buttons */
 }
 
-button:hover {
-    background-color: #ff8f00;
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+.controls button {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  outline: none;
 }
 
-button:active {
-    transform: translateY(2px);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+.controls button:disabled {
+  background-color: #c8e6c9;
+  cursor: not-allowed;
 }
 
-button:disabled {
-    background-color: #888;
-    cursor: not-allowed;
-    box-shadow: none;
+.controls button:hover:not(:disabled) {
+  background-color: #45a049;
+  transform: scale(1.05);
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Mobile responsiveness */
-@media (max-width: 400px) {
-    #timer-display {
-        font-size: 3em;
-    }
-    .container {
-        width: 270px;
-        padding: 30px;
-    }
-}
-
-/* Add to your existing CSS */
-
-.timer-running {
-    background-color: #ff8f00; /* A bold color indicating the timer is running */
-    box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.5); /* Glow effect */
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.timer-paused {
-    background-color: rgba(0, 0, 0, 0.5); /* Original color when paused */
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3); /* Original shadow */
-}
-
-/* Add a subtle pulsing effect when the timer is running */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.3);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0px 6px 15px rgba(255, 143, 0, 0.5);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0px 4px 10px rgba(255, 143, 0, 0.3);
-    }
-}
-
-/* Apply the pulse effect when the timer is running */
-.timer-running .pulse {
-    animation: pulse 1.5s ease-in-out infinite;
+.controls button:active {
+  transform: scale(0.98);
 }
